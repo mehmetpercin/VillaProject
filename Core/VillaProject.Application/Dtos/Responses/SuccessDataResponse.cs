@@ -4,14 +4,9 @@
     {
         public T Data { get; set; }
 
-        public static Response<T> Success(T data, int statusCode)
+        public static SuccessDataResponse<T> Success(T data, int statusCode)
         {
             return new SuccessDataResponse<T> { Data = data, StatusCode = statusCode };
-        }
-
-        public static Response<T> Success(int statusCode)
-        {
-            return new SuccessDataResponse<T> { Data = default, StatusCode = statusCode };
         }
     }
 }

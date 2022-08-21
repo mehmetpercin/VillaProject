@@ -26,7 +26,7 @@ namespace VillaProject.Application.Features.Villas.Commands
                 };
 
                 await _unitOfWork.Villas.AddAsync(villa, cancellationToken);
-                await _unitOfWork.Save(cancellationToken);
+                await _unitOfWork.SaveAsync(cancellationToken);
                 return SuccessDataResponse<Guid>.Success(villa.Id, 200);
             }
         }

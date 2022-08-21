@@ -2,7 +2,7 @@
 {
     public class SuccessResponse : Response<object>
     {
-        public static Response<object> Success(int statusCode)
+        public static SuccessResponse Success(int statusCode)
         {
             return new SuccessResponse { StatusCode = statusCode };
         }

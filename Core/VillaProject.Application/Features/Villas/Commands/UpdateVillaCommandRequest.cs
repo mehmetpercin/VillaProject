@@ -27,7 +27,7 @@ namespace VillaProject.Application.Features.Villas.Commands
                 if (villa != null)
                 {
                     villa.Name = request.Name;
-                    await _unitOfWork.Save(cancellationToken);
+                    await _unitOfWork.SaveAsync(cancellationToken);
                 }
 
                 return SuccessResponse.Success(200);

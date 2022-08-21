@@ -23,7 +23,7 @@ namespace VillaProject.Persistence.Repositories
 
         public IVillaRepository Villas => new VillaRepository(_context);
 
-        public async Task Save(CancellationToken cancellationToken = default)
+        public async Task SaveAsync(CancellationToken cancellationToken = default)
         {
             var username = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
