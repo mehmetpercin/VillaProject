@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using VillaProject.Application.Dtos.Responses;
 using VillaProject.Application.Repositories;
-using VillaProject.Domain;
+using VillaProject.Domain.Entities;
 
 namespace VillaProject.Application.Features.Villas.Commands
 {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using VillaProject.Domain;
 using VillaProject.Domain.Common;
+using VillaProject.Domain.Entities;
 
 namespace VillaProject.Persistence
 {
@@ -12,6 +12,10 @@ namespace VillaProject.Persistence
         }
 
         public DbSet<Villa> Villas { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

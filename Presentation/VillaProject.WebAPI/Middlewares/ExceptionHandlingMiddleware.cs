@@ -31,7 +31,7 @@ namespace VillaProject.WebAPI.Middlewares
             context.Response.ContentType = "application/json";
 
             _logger.LogError(exception.Message);
-            var response = ErrorResponse.Fail(exception.Message, context.Response.StatusCode);
+            var response = ErrorResponse.Fail("An error occured!", context.Response.StatusCode);
             await context.Response.WriteAsync(JsonSerializer.Serialize(response));
         }
     }

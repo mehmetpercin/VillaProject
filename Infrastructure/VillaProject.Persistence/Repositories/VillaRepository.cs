@@ -1,5 +1,5 @@
 ﻿using VillaProject.Application.Repositories;
-using VillaProject.Domain;
+using VillaProject.Domain.Entities;
 
 namespace VillaProject.Persistence.Repositories
 {

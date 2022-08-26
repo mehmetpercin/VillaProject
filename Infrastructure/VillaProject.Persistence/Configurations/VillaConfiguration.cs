@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using VillaProject.Domain;
+using VillaProject.Domain.Entities;
 
 namespace VillaProject.Persistence.Configurations
 {
