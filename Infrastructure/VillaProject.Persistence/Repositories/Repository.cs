@@ -27,7 +27,7 @@ namespace VillaProject.Persistence.Repositories
             await Table.AddRangeAsync(entities, cancellationToken);
         }
 
-        public async Task<bool> ExistsAsync(Expression<Func<TEntity, bool>> filter, CancellationToken cancellationToken = default)
+        public async Task<bool> AnyAsync(Expression<Func<TEntity, bool>> filter, CancellationToken cancellationToken = default)
         {
             return await Table.AnyAsync(filter, cancellationToken);
         }
@@ -48,12 +48,12 @@ namespace VillaProject.Persistence.Repositories
             return await Table.AsNoTracking().Where(filter).ToListAsync(cancellationToken);
         }
 
-        public async Task<TEntity> GetByIdAsync(string id, CancellationToken cancellationToken = default, bool tracking = true)
+        public async Task<TEntity> GetByIdAsync(Guid id, CancellationToken cancellationToken = default, bool tracking = true)
         {
             if (tracking)
-                return await Table.FindAsync(new object[] { Guid.Parse(id) }, cancellationToken);
+                return await Table.FindAsync(new object[] { id }, cancellationToken);
 
-            return await Table.AsNoTracking().FirstOrDefaultAsync(x => x.Id == Guid.Parse(id), cancellationToken);
+            return await Table.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         }
 
         public async Task<TEntity> GetFirstAsync(Expression<Func<TEntity, bool>> filter, CancellationToken cancellationToken = default, bool tracking = true)

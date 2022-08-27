@@ -3,7 +3,6 @@ using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using VillaProject.Application.Validators;
 
 namespace VillaProject.Application
 {
@@ -13,7 +12,7 @@ namespace VillaProject.Application
         {
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddFluentValidationAutoValidation()
-                .AddValidatorsFromAssembly(Assembly.Load(Assembly.GetExecutingAssembly().FullName));
+                .AddValidatorsFromAssembly(Assembly.Load(Assembly.GetExecutingAssembly().GetName().FullName));
         }
     }
 }

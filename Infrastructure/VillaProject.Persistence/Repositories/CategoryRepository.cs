@@ -3,10 +3,11 @@ using VillaProject.Domain.Entities;
 
 namespace VillaProject.Persistence.Repositories
 {
-    public class VillaRepository : Repository<Villa>, IVillaRepository
+    public class CategoryRepository : Repository<Category>, ICategoryRepository
     {
-        public VillaRepository(AppDbContext dbContext) : base(dbContext)
+        public CategoryRepository(AppDbContext context) : base(context)
         {
+
         }
     }
 }

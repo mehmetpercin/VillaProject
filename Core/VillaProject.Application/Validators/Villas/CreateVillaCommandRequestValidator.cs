@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using VillaProject.Application.Features.Villas.Commands;
+using VillaProject.Application.Features.Villas.Commands.CreateVillaCommand;
 
 namespace VillaProject.Application.Validators.Villas
 {

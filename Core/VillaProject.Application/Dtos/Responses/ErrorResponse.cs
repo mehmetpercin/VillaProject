@@ -1,17 +1,17 @@
 ﻿namespace VillaProject.Application.Dtos.Responses
 {
-    public class ErrorResponse : Response<object>
+    public class ErrorResponse<T> : Response<T>
     {
         public List<string> Errors { get; set; }
 
-        public static ErrorResponse Fail(List<string> errors, int statusCode)
+        public static Response<T> Fail(List<string> errors, int statusCode)
         {
-            return new ErrorResponse { Errors = errors, StatusCode = statusCode };
+            return new ErrorResponse<T> { Errors = errors, StatusCode = statusCode };
         }
 
-        public static ErrorResponse Fail(string error, int statusCode)
+        public static Response<T> Fail(string error, int statusCode)
         {
-            return new ErrorResponse { Errors = new List<string> { error }, StatusCode = statusCode };
+            return new ErrorResponse<T> { Errors = new List<string> { error }, StatusCode = statusCode };
         }
     }
 }
