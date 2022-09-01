@@ -2,13 +2,15 @@ using Microsoft.EntityFrameworkCore;
 using Serilog;
 using VillaProject.Application;
 using VillaProject.Persistence;
+using VillaProject.WebAPI.Filters;
 using VillaProject.WebAPI.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options => options.Filters.Add<ValidationFilter>())
+    .ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true); ;
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddApplicationServices();

@@ -13,6 +13,7 @@ namespace VillaProject.Application
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddFluentValidationAutoValidation()
                 .AddValidatorsFromAssembly(Assembly.Load(Assembly.GetExecutingAssembly().GetName().FullName));
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
         }
     }
 }
