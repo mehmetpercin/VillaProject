@@ -13,7 +13,7 @@ namespace VillaProject.Persistence.Repositories
             _appDbContext = appDbContext;
         }
 
-        public async Task<List<Product>> GetAllByCategoryId(Guid categoryId, CancellationToken cancellationToken = default)
+        public async Task<List<Product>> GetAllByCategoryId(int categoryId, CancellationToken cancellationToken = default)
         {
             return await _appDbContext.Products.Where(x => x.CategoryId == categoryId).ToListAsync(cancellationToken);
         }

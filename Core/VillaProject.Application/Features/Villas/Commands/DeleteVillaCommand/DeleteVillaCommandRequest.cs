@@ -5,6 +5,6 @@ namespace VillaProject.Application.Features.Villas.Commands.DeleteVillaCommand
 {
     public class DeleteVillaCommandRequest : IRequest<Response<object>>
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
     }
 }

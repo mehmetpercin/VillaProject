@@ -5,6 +5,6 @@ namespace VillaProject.Application.Features.Products.Commands.DeleteProductComma
 {
     public class DeleteProductCommandRequest : IRequest<Response<object>>
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
     }
 }

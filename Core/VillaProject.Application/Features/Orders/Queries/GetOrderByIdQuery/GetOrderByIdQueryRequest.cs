@@ -5,6 +5,6 @@ namespace VillaProject.Application.Features.Orders.Queries.GetOrderByIdQuery
 {
     public class GetOrderByIdQueryRequest : IRequest<Response<GetOrderByIdQueryResponse>>
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
     }
 }

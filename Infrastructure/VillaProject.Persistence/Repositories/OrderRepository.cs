@@ -13,7 +13,7 @@ namespace VillaProject.Persistence.Repositories
             _appDbContext = appDbContext;
         }
 
-        public async Task<Order> GetOrderWithOrderItemsByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        public async Task<Order> GetOrderWithOrderItemsByIdAsync(int id, CancellationToken cancellationToken = default)
         {
             return await _appDbContext.Orders
                 .Include(x => x.OrderItems)

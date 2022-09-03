@@ -4,9 +4,9 @@ using VillaProject.Application.Dtos.Responses;
 
 namespace VillaProject.Application.Features.Orders.Commands.CreateOrderCommand
 {
-    public class CreateOrderCommandRequest : IRequest<Response<Guid>>
+    public class CreateOrderCommandRequest : IRequest<Response<CreatedOrderDto>>
     {
-        public string VillaId { get; set; }
+        public int VillaId { get; set; }
         public List<OrderItemCreateDto> OrderItems { get; set; }
     }
 }

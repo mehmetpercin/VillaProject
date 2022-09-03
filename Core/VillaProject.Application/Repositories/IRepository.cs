@@ -5,7 +5,7 @@ namespace VillaProject.Application.Repositories
 {
     public interface IRepository<TEntity> where TEntity : DbObject
     {
-        Task<TEntity> GetByIdAsync(Guid id, CancellationToken cancellationToken = default, bool tracking = true);
+        Task<TEntity> GetByIdAsync(int id, CancellationToken cancellationToken = default, bool tracking = true);
         IQueryable<TEntity> GetAll(bool tracking = true);
         Task<List<TEntity>> GetByFilterAsync(Expression<Func<TEntity, bool>> filter, CancellationToken cancellationToken = default, bool tracking = true);
         Task<TEntity> GetFirstAsync(Expression<Func<TEntity, bool>> filter, CancellationToken cancellationToken = default, bool tracking = true);

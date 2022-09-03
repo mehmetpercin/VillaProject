@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VillaProject.Domain.Common
 {
-    public abstract class DbObject : DbObjectBase<Guid>
+    public abstract class DbObject : DbObjectBase<int>
     {
         public DateTimeOffset CreatedDate { get; set; }
         [MaxLength(50)]

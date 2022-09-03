@@ -5,7 +5,7 @@ namespace VillaProject.Domain.Entities
 {
     public class Order : DbObject
     {
-        public Guid VillaId { get; set; }
+        public int VillaId { get; set; }
         public Villa Villa { get; set; }
         public OrderStatusEnum StatusId { get; set; }
         public OrderStatus Status { get; set; }

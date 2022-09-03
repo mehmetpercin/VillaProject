@@ -5,6 +5,6 @@ namespace VillaProject.Application.Features.Categories.Commands.DeleteCategoryCo
 {
     public class DeleteCategoryCommandRequest : IRequest<Response<object>>
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
     }
 }

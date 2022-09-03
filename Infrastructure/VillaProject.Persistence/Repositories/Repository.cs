@@ -48,7 +48,7 @@ namespace VillaProject.Persistence.Repositories
             return await Table.AsNoTracking().Where(filter).ToListAsync(cancellationToken);
         }
 
-        public async Task<TEntity> GetByIdAsync(Guid id, CancellationToken cancellationToken = default, bool tracking = true)
+        public async Task<TEntity> GetByIdAsync(int id, CancellationToken cancellationToken = default, bool tracking = true)
         {
             if (tracking)
                 return await Table.FindAsync(new object[] { id }, cancellationToken);

@@ -5,7 +5,7 @@ namespace VillaProject.Application.Features.Categories.Commands.UpdateCategoryCo
 {
     public class UpdateCategoryCommandRequest : IRequest<Response<object>>
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
     }
 }
