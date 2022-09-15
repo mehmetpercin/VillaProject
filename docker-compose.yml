@@ -1,0 +1,28 @@
+version: '3.9'
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sqlserver_container
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Password12*"
+    ports:
+      - "1434:1433"
+  seq:
+    image: datalust/seq:latest
+    container_name: seq_container
+    ports:
+     - "5342:80"
+    environment:
+      - ACCEPT_EULA=Y
+  web-app:
+    build: .
+    container_name: villaproject_container
+    ports: 
+      - "7131:80"
+    environment:
+      - "ConnectionStrings:SqlServer=Server=sqlserver_container,1433;Database=VillaProjectDb; User=sa; Password=Password12*"
+      - "ConnectionStrings:Seq=http://seq_container"
+    depends_on:
+      - sqlserver
+      - seq

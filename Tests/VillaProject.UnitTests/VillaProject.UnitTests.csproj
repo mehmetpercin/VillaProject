@@ -26,4 +26,8 @@
     <ProjectReference Include="..\..\Core\VillaProject.Application\VillaProject.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ApplicationTests\Products\Queries\" />
+  </ItemGroup>
+
 </Project>

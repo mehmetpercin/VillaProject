@@ -19,7 +19,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VillaProject.WebAPI", "Pres
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C02664B6-C01E-4B10-9144-405713B2F7AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VillaProject.UnitTests", "Tests\VillaProject.UnitTests\VillaProject.UnitTests.csproj", "{A60C1EAB-4CC7-4D71-8ABA-2B065454F62F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VillaProject.UnitTests", "Tests\VillaProject.UnitTests\VillaProject.UnitTests.csproj", "{A60C1EAB-4CC7-4D71-8ABA-2B065454F62F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E09B8511-3711-40B0-8CCD-493862D23AB1}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+		Dockerfile = Dockerfile
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

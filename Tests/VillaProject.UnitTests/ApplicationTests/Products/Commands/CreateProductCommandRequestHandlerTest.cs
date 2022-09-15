@@ -4,6 +4,7 @@ using VillaProject.Application.Dtos.Responses;
 using VillaProject.Application.Features.Products.Commands.CreateProductCommand;
 using VillaProject.Application.Repositories;
 using VillaProject.Domain.Entities;
+using VillaProject.UnitTests.Mocks;
 
 namespace VillaProject.UnitTests.ApplicationTests.Products.Commands
 {
@@ -16,12 +17,11 @@ namespace VillaProject.UnitTests.ApplicationTests.Products.Commands
 
         public CreateProductCommandRequestHandlerTest()
         {
-            _mockCategoryRepository = new Mock<ICategoryRepository>();
-            _mockProductRepository = new Mock<IProductRepository>();
-            _mockUow = new Mock<IUnitOfWork>();
+            _mockCategoryRepository = RepositoryMocks.GetCategoryRepository();
+            _mockProductRepository = RepositoryMocks.GetProductRepository();
+            _mockUow = RepositoryMocks.GetUnitOfWork();
             _mockUow.Setup(x => x.Products).Returns(_mockProductRepository.Object);
             _mockUow.Setup(x => x.Categories).Returns(_mockCategoryRepository.Object);
-            _mockUow.Setup(x => x.SaveAsync(CancellationToken.None));
             _createProductCommandRequestHandler = new CreateProductCommandRequestHandler(_mockUow.Object);
         }
 
