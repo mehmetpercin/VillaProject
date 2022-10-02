@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using VillaProject.Application;
+using VillaProject.Identity;
 using VillaProject.Persistence;
 using VillaProject.WebAPI.Filters;
 using VillaProject.WebAPI.Middlewares;
@@ -13,6 +14,7 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddApplicationServices();
 builder.Services.AddPersistenceServices(builder.Configuration);
+builder.Services.AddIdentityServices(builder.Configuration);
 
 var logger = new LoggerConfiguration()
     .WriteTo.Seq(builder.Configuration.GetConnectionString("Seq"))
@@ -31,6 +33,9 @@ using (var scope = app.Services.CreateScope())
     var serviceProvider = scope.ServiceProvider;
     var dbContext = serviceProvider.GetRequiredService<AppDbContext>();
     dbContext.Database.Migrate();
+
+    var identityDbContext = serviceProvider.GetRequiredService<IdentityAppDbContext>();
+    identityDbContext.Database.Migrate();
 }
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();

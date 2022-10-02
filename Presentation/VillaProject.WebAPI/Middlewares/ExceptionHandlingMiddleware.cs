@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Text.Json;
 using VillaProject.Application.Dtos.Responses;
+using VillaProject.Domain.Exceptions;
 
 namespace VillaProject.WebAPI.Middlewares
 {
@@ -31,7 +32,11 @@ namespace VillaProject.WebAPI.Middlewares
             context.Response.ContentType = "application/json";
 
             _logger.LogError(message: exception.InnerException?.Message);
-            var response = (ErrorResponse<object>)ErrorResponse<object>.Fail("An error occured!", context.Response.StatusCode);
+            ErrorResponse<object> response = exception switch
+            {
+                IdentityException => (ErrorResponse<object>)ErrorResponse<object>.Fail(exception.Message, 400),
+                _ => (ErrorResponse<object>)ErrorResponse<object>.Fail("An error occured!", context.Response.StatusCode),
+            };
             await context.Response.WriteAsync(JsonSerializer.Serialize(response));
         }
     }

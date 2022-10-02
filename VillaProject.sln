@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Dockerfile = Dockerfile
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VillaProject.Identity", "Infrastructure\VillaProject.Identity\VillaProject.Identity.csproj", "{1E7366CD-B8AC-4E88-9CB9-698833135296}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{A60C1EAB-4CC7-4D71-8ABA-2B065454F62F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A60C1EAB-4CC7-4D71-8ABA-2B065454F62F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A60C1EAB-4CC7-4D71-8ABA-2B065454F62F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E7366CD-B8AC-4E88-9CB9-698833135296}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E7366CD-B8AC-4E88-9CB9-698833135296}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E7366CD-B8AC-4E88-9CB9-698833135296}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E7366CD-B8AC-4E88-9CB9-698833135296}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,6 +69,7 @@ Global
 		{9B74D08D-297B-4534-8B36-6F115C40B9FC} = {5EC2DC76-F5F1-4967-AB06-924D22683A57}
 		{119F67A3-DDE2-4FB6-82CA-7EE5EFB9E8F4} = {20953FA0-F1F8-4606-A119-42DCE1089A56}
 		{A60C1EAB-4CC7-4D71-8ABA-2B065454F62F} = {C02664B6-C01E-4B10-9144-405713B2F7AA}
+		{1E7366CD-B8AC-4E88-9CB9-698833135296} = {5EC2DC76-F5F1-4967-AB06-924D22683A57}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0920433E-07C8-463B-80EC-CBE0FEDEB7E5}
