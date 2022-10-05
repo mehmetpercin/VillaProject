@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
-using VillaProject.Application.Dtos;
+using VillaProject.Application.Dtos.Products;
 using VillaProject.Application.Dtos.Responses;
 using VillaProject.Application.Repositories;
 

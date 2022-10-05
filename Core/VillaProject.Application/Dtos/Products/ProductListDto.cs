@@ -1,4 +1,4 @@
-﻿namespace VillaProject.Application.Dtos
+﻿namespace VillaProject.Application.Dtos.Products
 {
     public class ProductListDto
     {

@@ -5,10 +5,11 @@ using VillaProject.Domain.Enums;
 
 namespace VillaProject.Persistence.Configurations
 {
-    public class OrderConfiguration : IEntityTypeConfiguration<Order>
+    public class OrderConfiguration : DbObjectBaseConfiguration<Order>
     {
-        public void Configure(EntityTypeBuilder<Order> builder)
+        public override void Configure(EntityTypeBuilder<Order> builder)
         {
+            base.Configure(builder);
             builder.HasOne(x => x.Villa).WithMany(x => x.Orders);
             builder.Property(x => x.StatusId).IsRequired().HasConversion<int>().HasDefaultValue(OrderStatusEnum.Open);
         }

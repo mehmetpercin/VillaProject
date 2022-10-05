@@ -28,7 +28,7 @@ namespace VillaProject.Persistence.Repositories
 
         public async Task SaveAsync(CancellationToken cancellationToken = default)
         {
-            var username = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var username = _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             await _context.SaveChangesAsync(username, cancellationToken);
         }

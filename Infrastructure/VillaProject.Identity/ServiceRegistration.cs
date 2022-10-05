@@ -26,8 +26,16 @@ namespace VillaProject.Identity
                 });
             });
 
-            services.AddIdentity<AppUser, IdentityRole>()
-                .AddEntityFrameworkStores<IdentityAppDbContext>().AddDefaultTokenProviders();
+            services.AddIdentity<AppUser, IdentityRole>(opt =>
+            {
+                opt.Password.RequiredLength = 6;
+                opt.Password.RequireDigit = false;
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequireUppercase = false;
+                opt.Password.RequireLowercase = false;
+                opt.User.RequireUniqueEmail = true;
+                opt.User.AllowedUserNameCharacters = "abcçdefgðhýijklmnoöpqrsþtuüvwxyzABCÇDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+            }).AddEntityFrameworkStores<IdentityAppDbContext>().AddDefaultTokenProviders();
 
             services.Configure<TokenOption>(configuration.GetRequiredSection("TokenOption"));
 

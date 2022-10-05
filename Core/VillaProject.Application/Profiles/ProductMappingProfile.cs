@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using VillaProject.Application.Dtos;
+using VillaProject.Application.Dtos.Products;
 using VillaProject.Application.Features.Products.Commands.UpdateProductCommand;
 using VillaProject.Domain.Entities;
 
