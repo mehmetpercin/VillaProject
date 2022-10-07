@@ -20,6 +20,7 @@ builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
 
 var logger = new LoggerConfiguration()
+    .WriteTo.Console()
     .WriteTo.Seq(builder.Configuration.GetConnectionString("Seq"))
     .Enrich.FromLogContext()
     .MinimumLevel.Information()

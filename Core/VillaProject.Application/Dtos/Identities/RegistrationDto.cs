@@ -1,6 +1,6 @@
 ﻿namespace VillaProject.Application.Dtos.Identities
 {
-    public class RegistrationRequest
+    public class RegistrationDto
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

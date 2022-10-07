@@ -32,7 +32,7 @@ namespace VillaProject.Identity.Services
             _tokenOption = options.Value;
         }
 
-        public async Task<AuthResponse> LoginAsync(AuthRequest request, CancellationToken cancellationToken = default)
+        public async Task<AuthResponse> LoginAsync(AuthDto request, CancellationToken cancellationToken = default)
         {
             var user = await _userManager.FindByEmailAsync(request.Email);
             if (user is null)
@@ -71,9 +71,7 @@ namespace VillaProject.Identity.Services
 
             var response = new AuthResponse
             {
-                Id = user.Id,
                 AccessToken = token,
-                Email = user.Email,
                 UserName = user.UserName,
                 RefreshToken = refreshToken
             };
@@ -95,11 +93,10 @@ namespace VillaProject.Identity.Services
             var newRefreshToken = GenerateRefreshToken();
             userRefreshToken.RefreshToken = newRefreshToken;
 
+            await _dbContext.SaveChangesAsync(cancellationToken);
             var response = new AuthResponse
             {
-                Id = user.Id,
                 AccessToken = token,
-                Email = user.Email,
                 UserName = user.UserName,
                 RefreshToken = newRefreshToken
             };

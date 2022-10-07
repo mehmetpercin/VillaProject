@@ -35,6 +35,7 @@ namespace VillaProject.WebAPI.Middlewares
             ErrorResponse<object> response = exception switch
             {
                 IdentityException => (ErrorResponse<object>)ErrorResponse<object>.Fail(exception.Message, 400),
+                DatabaseValidationException => (ErrorResponse<object>)ErrorResponse<object>.Fail(exception.Message, 400),
                 _ => (ErrorResponse<object>)ErrorResponse<object>.Fail("An error occured!", context.Response.StatusCode),
             };
             await context.Response.WriteAsync(JsonSerializer.Serialize(response));

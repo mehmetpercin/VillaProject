@@ -15,7 +15,7 @@ namespace VillaProject.Identity.Services
             _userManager = userManager;
         }
 
-        public async Task<string> RegisterAsync(RegistrationRequest request, CancellationToken cancellationToken = default)
+        public async Task<string> RegisterAsync(RegistrationDto request, CancellationToken cancellationToken = default)
         {
             var user = new AppUser
             {
