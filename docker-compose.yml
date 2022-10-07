@@ -22,6 +22,7 @@ services:
       - "7131:80"
     environment:
       - "ConnectionStrings:SqlServer=Server=sqlserver_container,1433;Database=VillaProjectDb; User=sa; Password=Password12*"
+      - "ConnectionStrings:IdentityDb=Server=sqlserver_container,1433;Database=IdentityDb; User=sa; Password=Password12*"
       - "ConnectionStrings:Seq=http://seq_container"
     depends_on:
       - sqlserver

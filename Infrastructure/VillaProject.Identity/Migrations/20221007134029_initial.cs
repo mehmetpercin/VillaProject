@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace VillaProject.Identity.Migrations
 {
-    public partial class identity_initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -54,10 +54,9 @@ namespace VillaProject.Identity.Migrations
                 name: "UserRefreshTokens",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RefreshToken = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
+                    RefreshToken = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
                     Expiration = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -174,12 +173,12 @@ namespace VillaProject.Identity.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "8410b5f1-8795-4f88-8c47-6736a193dd16", "1d9589f4-ae74-445d-8fe8-09a65d2b51cd", "User", "USER" });
+                values: new object[] { "154d66bb-2c93-45e8-ab29-32b1aab22e61", "0431b6f6-9040-4175-8cf4-08187d183bc0", "User", "USER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "b795de63-0754-4522-86c5-e494a6496484", "149ed5e2-f4ba-4832-beef-a2db387c80d4", "Admin", "ADMIN" });
+                values: new object[] { "adfe10f5-d87d-4348-8019-720b32c606e0", "950b6730-686c-4787-90f1-a9095c12c727", "Admin", "ADMIN" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

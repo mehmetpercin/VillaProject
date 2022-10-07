@@ -12,8 +12,8 @@ using VillaProject.Identity;
 namespace VillaProject.Identity.Migrations
 {
     [DbContext(typeof(IdentityAppDbContext))]
-    [Migration("20221007080037_mig_2")]
-    partial class mig_2
+    [Migration("20221007134029_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,15 +53,15 @@ namespace VillaProject.Identity.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "05ef4296-1e7d-47db-8e3b-ba2b28bdffda",
-                            ConcurrencyStamp = "ea83c072-435c-4b8a-846c-354c0db7dd87",
+                            Id = "154d66bb-2c93-45e8-ab29-32b1aab22e61",
+                            ConcurrencyStamp = "0431b6f6-9040-4175-8cf4-08187d183bc0",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "0c93afe0-522c-4a7e-97e0-1bcc839033ce",
-                            ConcurrencyStamp = "a537ec2a-66f6-4b7b-94a3-013cce8d181e",
+                            Id = "adfe10f5-d87d-4348-8019-720b32c606e0",
+                            ConcurrencyStamp = "950b6730-686c-4787-90f1-a9095c12c727",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -250,11 +250,9 @@ namespace VillaProject.Identity.Migrations
 
             modelBuilder.Entity("VillaProject.Identity.Entities.UserRefreshToken", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Expiration")
                         .HasColumnType("datetime2");

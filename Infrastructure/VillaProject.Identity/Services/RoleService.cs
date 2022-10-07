@@ -64,6 +64,7 @@ namespace VillaProject.Identity.Services
             if (role is null)
                 return;
 
+            role.Name = roleDto.Name;
             var identiyResult = await _roleManager.UpdateAsync(role);
             if (!identiyResult.Succeeded)
             {

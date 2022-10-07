@@ -18,10 +18,6 @@
 
   <ItemGroup>
     <Folder Include="Dtos\Villas\" />
-    <Folder Include="Features\Roles\Commands\DeleteRoleCommand\" />
-    <Folder Include="Features\Roles\Commands\UpdateRoleCommand\" />
-    <Folder Include="Features\Roles\Queries\GetRolesQuery\" />
-    <Folder Include="Features\Users\Commands\AddUserRoleCommand\" />
   </ItemGroup>
 
 </Project>

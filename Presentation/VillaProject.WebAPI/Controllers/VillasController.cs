@@ -1,4 +1,4 @@
-﻿using MediatR;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using VillaProject.Application.Features.Villas.Commands.CreateVillaCommand;
 using VillaProject.Application.Features.Villas.Commands.DeleteVillaCommand;
@@ -16,18 +16,21 @@ namespace VillaProject.WebAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([FromBody] CreateVillaCommandRequest request, CancellationToken cancellationToken = default)
         {
             return CreateActionResultInstance(await Mediator.Send(request, cancellationToken));
         }
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Update([FromBody] UpdateVillaCommandRequest request, CancellationToken cancellationToken = default)
         {
             return CreateActionResultInstance(await Mediator.Send(request, cancellationToken));
         }
 
         [HttpDelete("{Id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete([FromRoute] DeleteVillaCommandRequest request, CancellationToken cancellationToken = default)
         {
             return CreateActionResultInstance(await Mediator.Send(request, cancellationToken));
