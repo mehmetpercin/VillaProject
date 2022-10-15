@@ -5,7 +5,7 @@ using VillaProject.Domain.Common;
 
 namespace VillaProject.Persistence.Repositories
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : DbObject
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : DbObjectBase<int>
     {
         private readonly AppDbContext _dbContext;
 

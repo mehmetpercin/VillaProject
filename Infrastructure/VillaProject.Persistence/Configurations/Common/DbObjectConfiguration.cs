@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using VillaProject.Domain.Common;
 
-namespace VillaProject.Persistence.Configurations
+namespace VillaProject.Persistence.Configurations.Common
 {
-    public abstract class DbObjectBaseConfiguration<T> : IEntityTypeConfiguration<T> where T : DbObject
+    public abstract class DbObjectConfiguration<T> : IEntityTypeConfiguration<T> where T : DbObject
     {
         public virtual void Configure(EntityTypeBuilder<T> builder)
         {

@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using VillaProject.Domain.Entities;
+using VillaProject.Persistence.Configurations.Common;
 
 namespace VillaProject.Persistence.Configurations
 {
-    public class OrderItemConfiguration : DbObjectBaseConfiguration<OrderItem>
+    public class OrderItemConfiguration : DbObjectConfiguration<OrderItem>
     {
         public override void Configure(EntityTypeBuilder<OrderItem> builder)
         {

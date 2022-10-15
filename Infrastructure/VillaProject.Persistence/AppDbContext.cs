@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VillaProject.Domain.Common;
 using VillaProject.Domain.Entities;
+using VillaProject.Domain.Localization;
 
 namespace VillaProject.Persistence
 {
@@ -16,6 +17,10 @@ namespace VillaProject.Persistence
         public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
+
+
+        public DbSet<Language> Languages { get; set; }
+        public DbSet<LanguageResource> LanguageResources { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

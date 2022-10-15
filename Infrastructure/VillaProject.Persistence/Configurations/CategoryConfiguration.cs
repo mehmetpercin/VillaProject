@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using VillaProject.Domain.Entities;
+using VillaProject.Persistence.Configurations.Common;
 
 namespace VillaProject.Persistence.Configurations
 {
-    public class CategoryConfiguration : DbObjectBaseConfiguration<Category>
+    public class CategoryConfiguration : DbObjectConfiguration<Category>
     {
         public override void Configure(EntityTypeBuilder<Category> builder)
         {

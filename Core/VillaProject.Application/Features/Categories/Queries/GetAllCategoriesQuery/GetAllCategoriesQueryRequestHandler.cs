@@ -18,7 +18,7 @@ namespace VillaProject.Application.Features.Categories.Queries.GetAllCategoriesQ
         {
             var categories = await Task.Run(() =>
             {
-                return _categoryRepository.GetAll(false).Select(x => new CategoryDto
+                return _categoryRepository.GetAll().Select(x => new CategoryDto
                 {
                     Id = x.Id.ToString(),
                     Name = x.Name

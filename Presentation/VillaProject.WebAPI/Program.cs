@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Serilog;
+using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using VillaProject.Application;
+using VillaProject.Application.Repositories;
 using VillaProject.Identity;
 using VillaProject.Persistence;
 using VillaProject.WebAPI.Filters;
@@ -56,6 +59,20 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+builder.Services.AddLocalization();
+
+var sp = builder.Services.BuildServiceProvider();
+var languageRepository = sp.GetRequiredService<ILanguageRepository>();
+var languages = languageRepository.GetAll().ToList();
+var cultures = languages.Select(x => new CultureInfo(x.Culture)).ToArray();
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    var englishCulture = cultures.FirstOrDefault(x => x.Name == "en-US");
+    options.DefaultRequestCulture = new RequestCulture(englishCulture?.Name ?? "en-US");
+
+    options.SupportedCultures = cultures;
+});
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -78,6 +95,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseRequestLocalization();
 
 app.MapControllers();
 

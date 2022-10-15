@@ -21,6 +21,8 @@ namespace VillaProject.Persistence
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<ILanguageRepository, LanguageRepository>();
+            services.AddScoped<ILanguageResourceRepository, LanguageResourceRepository>();
         }
     }
 }

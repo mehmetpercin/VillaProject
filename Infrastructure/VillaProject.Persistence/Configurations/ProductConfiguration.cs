@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using VillaProject.Domain.Entities;
+using VillaProject.Persistence.Configurations.Common;
 
 namespace VillaProject.Persistence.Configurations
 {
-    public class ProductConfiguration : DbObjectBaseConfiguration<Product>
+    public class ProductConfiguration : DbObjectConfiguration<Product>
     {
         public override void Configure(EntityTypeBuilder<Product> builder)
         {

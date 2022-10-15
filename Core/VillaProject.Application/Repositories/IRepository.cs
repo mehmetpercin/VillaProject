@@ -3,7 +3,7 @@ using VillaProject.Domain.Common;
 
 namespace VillaProject.Application.Repositories
 {
-    public interface IRepository<TEntity> where TEntity : DbObject
+    public interface IRepository<TEntity> where TEntity : DbObjectBase<int>
     {
         Task<TEntity> GetByIdAsync(int id, CancellationToken cancellationToken = default, bool tracking = true);
         IQueryable<TEntity> GetAll(bool tracking = true);
