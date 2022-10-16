@@ -1,5 +1,4 @@
-﻿using Moq;
-using VillaProject.Application.Repositories;
+﻿using VillaProject.Application.Repositories;
 
 namespace VillaProject.UnitTests.Mocks
 {

@@ -5,7 +5,7 @@ using VillaProject.Domain.Entities;
 
 namespace VillaProject.Application.Features.Categories.Commands.CreateCategoryCommand
 {
-    public class CreateCategoryCommandRequestHandler : IRequestHandler<CreateCategoryCommandRequest, Response<int>>
+    public class CreateCategoryCommandRequestHandler : IRequestHandler<CreateCategoryCommandRequest, Response>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -14,11 +14,11 @@ namespace VillaProject.Application.Features.Categories.Commands.CreateCategoryCo
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Response<int>> Handle(CreateCategoryCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Response> Handle(CreateCategoryCommandRequest request, CancellationToken cancellationToken)
         {
             var exists = await _unitOfWork.Categories.AnyAsync(x => x.Name == request.Name, cancellationToken);
             if (exists)
-                return ErrorResponse<int>.Fail("Category already exists!", 400);
+                return ErrorResponse.Fail("Category already exists!", 400);
 
             var category = await _unitOfWork.Categories.AddAsync(new Category
             {
@@ -26,7 +26,7 @@ namespace VillaProject.Application.Features.Categories.Commands.CreateCategoryCo
             }, cancellationToken);
             await _unitOfWork.SaveAsync(cancellationToken);
 
-            return SuccessDataResponse<int>.Success(category.Id, 200);
+            return SuccessDataResponse.Success(category.Id, 200);
         }
     }
 }

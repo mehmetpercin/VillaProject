@@ -3,7 +3,7 @@ using VillaProject.Application.Dtos.Responses;
 
 namespace VillaProject.Application.Features.Users.RegisterCommand
 {
-    public class RegisterCommandRequest : IRequest<Response<string>>
+    public class RegisterCommandRequest : IRequest<Response>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

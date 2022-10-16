@@ -46,7 +46,6 @@ namespace VillaProject.Identity.Services
                 throw new IdentityException("Email or Password is wrong!");
             }
 
-            var token = await GenerateAccessTokenAsync(user);
             var refreshToken = GenerateRefreshToken();
 
             var userRefreshToken = await _dbContext.UserRefreshTokens.FirstOrDefaultAsync(x => x.UserId == user.Id, cancellationToken);
@@ -68,7 +67,7 @@ namespace VillaProject.Identity.Services
             }
 
             await _dbContext.SaveChangesAsync(cancellationToken);
-
+            var token = await GenerateAccessTokenAsync(user);
             var response = new AuthResponse
             {
                 AccessToken = token,
@@ -108,11 +107,7 @@ namespace VillaProject.Identity.Services
             var userClaims = await _userManager.GetClaimsAsync(user);
             var roles = await _userManager.GetRolesAsync(user);
 
-            var roleClaims = new List<Claim>();
-            for (int i = 0; i < roles.Count; i++)
-            {
-                roleClaims.Add(new Claim(ClaimTypes.Role, roles[i]));
-            }
+            var roleClaims = roles.Select(x => new Claim(ClaimTypes.Role, x));
 
             var claims = new[]
             {

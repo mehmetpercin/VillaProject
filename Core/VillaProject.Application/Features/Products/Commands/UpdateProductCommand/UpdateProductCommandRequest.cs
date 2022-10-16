@@ -3,7 +3,7 @@ using VillaProject.Application.Dtos.Responses;
 
 namespace VillaProject.Application.Features.Products.Commands.UpdateProductCommand
 {
-    public class UpdateProductCommandRequest : IRequest<Response<object>>
+    public class UpdateProductCommandRequest : IRequest<Response>
     {
         public int Id { get; set; }
         public string Name { get; set; }

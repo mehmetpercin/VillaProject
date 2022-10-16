@@ -25,6 +25,8 @@ namespace VillaProject.Persistence.Repositories
         public IOrderRepository Orders => new OrderRepository(_context);
         public ICategoryRepository Categories => new CategoryRepository(_context);
         public IProductRepository Products => new ProductRepository(_context);
+        public ILanguageRepository Languages => new LanguageRepository(_context);
+        public ILanguageResourceRepository LanguageResources => new LanguageResourceRepository(_context,_httpContextAccessor);
 
         public async Task SaveAsync(CancellationToken cancellationToken = default)
         {

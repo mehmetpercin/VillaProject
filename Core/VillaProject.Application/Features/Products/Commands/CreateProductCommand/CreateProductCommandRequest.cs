@@ -3,7 +3,7 @@ using VillaProject.Application.Dtos.Responses;
 
 namespace VillaProject.Application.Features.Products.Commands.CreateProductCommand
 {
-    public class CreateProductCommandRequest : IRequest<Response<int>>
+    public class CreateProductCommandRequest : IRequest<Response>
     {
         public string Name { get; set; }
         public decimal Price { get; set; }

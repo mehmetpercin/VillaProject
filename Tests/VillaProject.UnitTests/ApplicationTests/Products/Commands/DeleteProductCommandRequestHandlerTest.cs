@@ -1,5 +1,4 @@
-﻿using Moq;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 using VillaProject.Application.Dtos.Responses;
 using VillaProject.Application.Features.Products.Commands.DeleteProductCommand;
 using VillaProject.Application.Repositories;
@@ -33,7 +32,7 @@ namespace VillaProject.UnitTests.ApplicationTests.Products.Commands
 
             var result = await _deleteProductCommandRequestHandler.Handle(new DeleteProductCommandRequest { Id = 1 }, CancellationToken.None);
 
-            Assert.IsType<ErrorResponse<object>>(result);
+            Assert.IsType<ErrorResponse>(result);
             Assert.Equal(400, result.StatusCode);
         }
 
@@ -57,7 +56,7 @@ namespace VillaProject.UnitTests.ApplicationTests.Products.Commands
         {
             _mockOrderRepository.Setup(x => x.AnyAsync(It.IsAny<Expression<Func<Order, bool>>>(), CancellationToken.None)).ReturnsAsync(false);
 
-            _mockProductRepository.Setup(x => x.GetByIdAsync(It.IsAny<int>(), CancellationToken.None, false)).ReturnsAsync(() => new Product());
+            _mockProductRepository.Setup(x => x.GetByIdAsync(It.IsAny<int>(), CancellationToken.None, It.IsAny<bool>())).ReturnsAsync(() => new Product());
 
             var result = await _deleteProductCommandRequestHandler.Handle(new DeleteProductCommandRequest { Id = 1 }, CancellationToken.None);
 

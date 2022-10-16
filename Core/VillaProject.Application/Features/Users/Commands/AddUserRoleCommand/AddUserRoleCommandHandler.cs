@@ -4,7 +4,7 @@ using VillaProject.Application.Services;
 
 namespace VillaProject.Application.Features.Users.Commands.AddUserRoleCommand
 {
-    public class AddUserRoleCommandHandler : IRequestHandler<AddUserRoleCommandRequest, Response<object>>
+    public class AddUserRoleCommandHandler : IRequestHandler<AddUserRoleCommandRequest, Response>
     {
         private readonly IUserService _userService;
 
@@ -13,7 +13,7 @@ namespace VillaProject.Application.Features.Users.Commands.AddUserRoleCommand
             _userService = userService;
         }
 
-        public async Task<Response<object>> Handle(AddUserRoleCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Response> Handle(AddUserRoleCommandRequest request, CancellationToken cancellationToken)
         {
             await _userService.AddUserRoleAsync(request.UserId, request.RoleName, cancellationToken);
             return SuccessResponse.Success(200);

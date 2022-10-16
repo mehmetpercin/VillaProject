@@ -4,7 +4,7 @@ using VillaProject.Application.Repositories;
 
 namespace VillaProject.Application.Features.Villas.Queries
 {
-    public class GetAllVillasQueryRequestHandler : IRequestHandler<GetAllVillasQueryRequest, Response<List<GetAllVillasResponse>>>
+    public class GetAllVillasQueryRequestHandler : IRequestHandler<GetAllVillasQueryRequest, Response>
     {
         private readonly IVillaRepository _villaRepository;
 
@@ -13,7 +13,7 @@ namespace VillaProject.Application.Features.Villas.Queries
             _villaRepository = villaRepository;
         }
 
-        public async Task<Response<List<GetAllVillasResponse>>> Handle(GetAllVillasQueryRequest request, CancellationToken cancellationToken)
+        public async Task<Response> Handle(GetAllVillasQueryRequest request, CancellationToken cancellationToken)
         {
             var result = await Task.Run(() =>
             {
@@ -24,7 +24,7 @@ namespace VillaProject.Application.Features.Villas.Queries
                 }).ToList();
             }, cancellationToken);
 
-            return SuccessDataResponse<List<GetAllVillasResponse>>.Success(result, 200);
+            return SuccessDataResponse.Success(result, 200);
         }
     }
 }

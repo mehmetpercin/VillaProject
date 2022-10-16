@@ -8,7 +8,7 @@ using VillaProject.Domain.Enums;
 
 namespace VillaProject.Application.Features.Orders.Commands.CreateOrderCommand
 {
-    public class CreateOrderCommandRequestHandler : IRequestHandler<CreateOrderCommandRequest, Response<CreatedOrderDto>>
+    public class CreateOrderCommandRequestHandler : IRequestHandler<CreateOrderCommandRequest, Response>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -19,7 +19,7 @@ namespace VillaProject.Application.Features.Orders.Commands.CreateOrderCommand
             _mapper = mapper;
         }
 
-        public async Task<Response<CreatedOrderDto>> Handle(CreateOrderCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Response> Handle(CreateOrderCommandRequest request, CancellationToken cancellationToken)
         {
             var orderItems = _mapper.Map<List<OrderItem>>(request.OrderItems);
             var newOrder = new Order
@@ -32,7 +32,7 @@ namespace VillaProject.Application.Features.Orders.Commands.CreateOrderCommand
             await _unitOfWork.Orders.AddAsync(newOrder, cancellationToken);
             await _unitOfWork.SaveAsync(cancellationToken);
 
-            return SuccessDataResponse<CreatedOrderDto>.Success(new CreatedOrderDto
+            return SuccessDataResponse.Success(new CreatedOrderDto
             {
                 OrderId = newOrder.Id,
                 VillaId = newOrder.VillaId,

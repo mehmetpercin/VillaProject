@@ -1,5 +1,4 @@
-﻿using Moq;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 using VillaProject.Application.Dtos.Responses;
 using VillaProject.Application.Features.Products.Commands.CreateProductCommand;
 using VillaProject.Application.Repositories;
@@ -31,7 +30,7 @@ namespace VillaProject.UnitTests.ApplicationTests.Products.Commands
             _mockCategoryRepository.Setup(x => x.AnyAsync(It.IsAny<Expression<Func<Category, bool>>>(), CancellationToken.None)).ReturnsAsync(false);
             var result = await _createProductCommandRequestHandler.Handle(new CreateProductCommandRequest { CategoryId = -1, Name = "Product 1", Price = 1 }, CancellationToken.None);
 
-            Assert.IsType<ErrorResponse<int>>(result);
+            Assert.IsType<ErrorResponse>(result);
             Assert.Equal(400, result.StatusCode);
         }
 
@@ -44,7 +43,7 @@ namespace VillaProject.UnitTests.ApplicationTests.Products.Commands
             _mockUow.Verify(x => x.Products.AddAsync(It.IsAny<Product>(), CancellationToken.None), Times.Once);
             _mockUow.Verify(x => x.SaveAsync(CancellationToken.None), Times.Once);
 
-            Assert.IsType<SuccessDataResponse<int>>(result);
+            Assert.IsType<SuccessDataResponse>(result);
             Assert.Equal(200, result.StatusCode);
         }
     }

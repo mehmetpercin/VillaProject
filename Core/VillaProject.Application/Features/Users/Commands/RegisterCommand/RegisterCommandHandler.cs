@@ -5,7 +5,7 @@ using VillaProject.Application.Services;
 
 namespace VillaProject.Application.Features.Users.RegisterCommand
 {
-    public class RegisterCommandHandler : IRequestHandler<RegisterCommandRequest, Response<string>>
+    public class RegisterCommandHandler : IRequestHandler<RegisterCommandRequest,Response>
     {
         private readonly IUserService _userService;
 
@@ -14,10 +14,10 @@ namespace VillaProject.Application.Features.Users.RegisterCommand
             _userService = userService;
         }
 
-        public async Task<Response<string>> Handle(RegisterCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Response> Handle(RegisterCommandRequest request, CancellationToken cancellationToken)
         {
             if (!request.Password.Equals(request.PasswordConfirm))
-                return ErrorResponse<string>.Fail("Password and password confirm are not same!", 400);
+                return ErrorResponse.Fail("Password and password confirm are not same!", 400);
 
             var userId = await _userService.RegisterAsync(
                 new RegistrationDto
@@ -29,7 +29,7 @@ namespace VillaProject.Application.Features.Users.RegisterCommand
                     UserName = request.UserName
                 }, cancellationToken);
 
-            return SuccessDataResponse<string>.Success(userId, 200);
+            return SuccessDataResponse.Success(userId, 200);
         }
     }
 }

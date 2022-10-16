@@ -31,12 +31,12 @@ namespace VillaProject.WebAPI.Middlewares
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError; ;
             context.Response.ContentType = "application/json";
 
-            _logger.LogError(message: exception.InnerException?.Message);
-            ErrorResponse<object> response = exception switch
+            _logger.LogError(message: exception.InnerException?.Message ?? exception.Message);
+            ErrorResponse response = exception switch
             {
-                IdentityException => (ErrorResponse<object>)ErrorResponse<object>.Fail(exception.Message, 400),
-                DatabaseValidationException => (ErrorResponse<object>)ErrorResponse<object>.Fail(exception.Message, 400),
-                _ => (ErrorResponse<object>)ErrorResponse<object>.Fail("An error occured!", context.Response.StatusCode),
+                IdentityException => ErrorResponse.Fail(exception.Message, 400),
+                DatabaseValidationException => ErrorResponse.Fail(exception.Message, 400),
+                _ => ErrorResponse.Fail("An error occured!", context.Response.StatusCode),
             };
             await context.Response.WriteAsync(JsonSerializer.Serialize(response));
         }

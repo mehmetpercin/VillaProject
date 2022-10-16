@@ -5,7 +5,7 @@ using VillaProject.Domain.Entities;
 
 namespace VillaProject.Application.Features.Products.Commands.CreateProductCommand
 {
-    public class CreateProductCommandRequestHandler : IRequestHandler<CreateProductCommandRequest, Response<int>>
+    public class CreateProductCommandRequestHandler : IRequestHandler<CreateProductCommandRequest, Response>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -14,12 +14,12 @@ namespace VillaProject.Application.Features.Products.Commands.CreateProductComma
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Response<int>> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Response> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
         {
             var categoryResult = await _unitOfWork.Categories.AnyAsync(x => x.Id == request.CategoryId, cancellationToken);
             if (!categoryResult)
             {
-                return ErrorResponse<int>.Fail("Category did not find!", 400);
+                return ErrorResponse.Fail("Category did not find!", 400);
             }
 
             var product = new Product
@@ -33,7 +33,7 @@ namespace VillaProject.Application.Features.Products.Commands.CreateProductComma
             await _unitOfWork.Products.AddAsync(product, cancellationToken);
             await _unitOfWork.SaveAsync(cancellationToken);
 
-            return SuccessDataResponse<int>.Success(product.Id, 200);
+            return SuccessDataResponse.Success(product.Id, 200);
         }
     }
 }

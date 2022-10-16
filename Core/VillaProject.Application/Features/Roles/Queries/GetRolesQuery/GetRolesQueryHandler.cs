@@ -5,7 +5,7 @@ using VillaProject.Application.Services;
 
 namespace VillaProject.Application.Features.Roles.Queries.GetRolesQuery
 {
-    public class GetRolesQueryHandler : IRequestHandler<GetRolesQueryRequest, Response<List<RoleDto>>>
+    public class GetRolesQueryHandler : IRequestHandler<GetRolesQueryRequest, Response>
     {
         private readonly IRoleService _roleService;
 
@@ -14,10 +14,10 @@ namespace VillaProject.Application.Features.Roles.Queries.GetRolesQuery
             _roleService = roleService;
         }
 
-        public async Task<Response<List<RoleDto>>> Handle(GetRolesQueryRequest request, CancellationToken cancellationToken)
+        public async Task<Response> Handle(GetRolesQueryRequest request, CancellationToken cancellationToken)
         {
             var roles = await _roleService.GetUserRolesAsync();
-            return SuccessDataResponse<List<RoleDto>>.Success(roles, 200);
+            return SuccessDataResponse.Success(roles, 200);
         }
     }
 }

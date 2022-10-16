@@ -1,12 +1,12 @@
 ﻿namespace VillaProject.Application.Dtos.Responses
 {
-    public class SuccessDataResponse<T> : Response<T>
+    public class SuccessDataResponse : Response
     {
-        public T Data { get; set; }
+        public object? Data { get; set; }
 
-        public static Response<T> Success(T data, int statusCode)
+        public static SuccessDataResponse Success(object data, int statusCode)
         {
-            return new SuccessDataResponse<T> { Data = data, StatusCode = statusCode };
+            return new SuccessDataResponse { Data = data, StatusCode = statusCode };
         }
     }
 }
