@@ -14,7 +14,7 @@ namespace VillaProject.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        private DbSet<TEntity> Table => _dbContext.Set<TEntity>();
+        protected DbSet<TEntity> Table => _dbContext.Set<TEntity>();
 
         public async Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken = default)
         {

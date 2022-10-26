@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using VillaProject.Application.Dtos.Identities;
 using VillaProject.Application.Dtos.Responses;
 
 namespace VillaProject.Application.Features.Users.LoginCommand

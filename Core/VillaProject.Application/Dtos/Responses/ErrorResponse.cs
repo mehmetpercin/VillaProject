@@ -2,16 +2,11 @@
 {
     public class ErrorResponse : Response
     {
-        public List<string> Errors { get; set; }
-
-        public static ErrorResponse Fail(List<string> errors, int statusCode)
-        {
-            return new ErrorResponse { Errors = errors, StatusCode = statusCode };
-        }
+        public string Error { get; set; }
 
         public static ErrorResponse Fail(string error, int statusCode)
         {
-            return new ErrorResponse { Errors = new List<string> { error }, StatusCode = statusCode };
+            return new ErrorResponse { Error = error, StatusCode = statusCode };
         }
     }
 }

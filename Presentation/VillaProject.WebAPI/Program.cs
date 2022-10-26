@@ -59,6 +59,8 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+builder.Services.AddCors();
+
 builder.Services.AddLocalization();
 
 var sp = builder.Services.BuildServiceProvider();
@@ -84,6 +86,13 @@ using (var scope = app.Services.CreateScope())
     var identityDbContext = serviceProvider.GetRequiredService<IdentityAppDbContext>();
     identityDbContext.Database.Migrate();
 }
+
+app.UseCors(opt =>
+{
+    opt.AllowAnyHeader()
+       .AllowAnyMethod()
+       .AllowAnyOrigin();
+});
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
