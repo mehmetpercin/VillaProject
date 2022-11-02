@@ -12,7 +12,7 @@ namespace VillaProject.WebAPI.Filters
             {
                 var errors = context.ModelState.Values.Where(x => x.Errors.Count > 0).SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList();
 
-                var response = ErrorResponse.Fail(string.Join(Environment.NewLine, errors), 400);
+                var response = ErrorResult.Fail(string.Join(Environment.NewLine, errors), 400);
                 context.Result = new BadRequestObjectResult(response);
                 return;
             }

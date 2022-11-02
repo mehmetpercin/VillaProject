@@ -4,7 +4,7 @@ using VillaProject.Application.Services;
 
 namespace VillaProject.Application.Features.Roles.CreateRoleCommand
 {
-    public class CreateRoleCommandHandler : IRequestHandler<CreateRoleCommandRequest,Response>
+    public class CreateRoleCommandHandler : IRequestHandler<CreateRoleCommandRequest,Result>
     {
         private readonly IRoleService _roleService;
 
@@ -13,10 +13,10 @@ namespace VillaProject.Application.Features.Roles.CreateRoleCommand
             _roleService = roleService;
         }
 
-        public async Task<Response> Handle(CreateRoleCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(CreateRoleCommandRequest request, CancellationToken cancellationToken)
         {
             var result = await _roleService.AddUserRoleAsync(request.RoleName);
-            return SuccessDataResponse.Success(result, 201);
+            return SuccessDataResult.Success(result, 201);
         }
     }
 }

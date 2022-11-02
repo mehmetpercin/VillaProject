@@ -4,7 +4,7 @@ using VillaProject.Application.Repositories;
 
 namespace VillaProject.Application.Features.Villas.Commands.DeleteVillaCommand
 {
-    public class DeleteVillaCommandRequestHandler : IRequestHandler<DeleteVillaCommandRequest, Response>
+    public class DeleteVillaCommandRequestHandler : IRequestHandler<DeleteVillaCommandRequest, Result>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -13,7 +13,7 @@ namespace VillaProject.Application.Features.Villas.Commands.DeleteVillaCommand
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Response> Handle(DeleteVillaCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(DeleteVillaCommandRequest request, CancellationToken cancellationToken)
         {
             var villa = await _unitOfWork.Villas.GetByIdAsync(request.Id, cancellationToken, false);
             if (villa != null)
@@ -22,7 +22,7 @@ namespace VillaProject.Application.Features.Villas.Commands.DeleteVillaCommand
                 await _unitOfWork.SaveAsync(cancellationToken);
             }
 
-            return SuccessResponse.Success(200);
+            return SuccessResult.Success(200);
         }
     }
 }

@@ -6,7 +6,7 @@ using VillaProject.Application.Repositories;
 
 namespace VillaProject.Application.Features.Products.Queries.GetAllProductsQuery
 {
-    public class GetAllProductsQueryRequestHandler : IRequestHandler<GetAllProductsQueryRequest, Response>
+    public class GetAllProductsQueryRequestHandler : IRequestHandler<GetAllProductsQueryRequest, Result>
     {
         private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
@@ -17,7 +17,7 @@ namespace VillaProject.Application.Features.Products.Queries.GetAllProductsQuery
             _mapper = mapper;
         }
 
-        public async Task<Response> Handle(GetAllProductsQueryRequest request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(GetAllProductsQueryRequest request, CancellationToken cancellationToken)
         {
             var products = await Task.Run(() =>
             {
@@ -25,7 +25,7 @@ namespace VillaProject.Application.Features.Products.Queries.GetAllProductsQuery
             });
 
             var result = _mapper.Map<List<ProductListDto>>(products);
-            return SuccessDataResponse.Success(result, 200);
+            return SuccessDataResult.Success(result, 200);
         }
     }
 }

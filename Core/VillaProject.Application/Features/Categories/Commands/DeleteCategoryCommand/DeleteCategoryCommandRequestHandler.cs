@@ -4,7 +4,7 @@ using VillaProject.Application.Repositories;
 
 namespace VillaProject.Application.Features.Categories.Commands.DeleteCategoryCommand
 {
-    public class DeleteCategoryCommandRequestHandler : IRequestHandler<DeleteCategoryCommandRequest, Response>
+    public class DeleteCategoryCommandRequestHandler : IRequestHandler<DeleteCategoryCommandRequest, Result>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -13,7 +13,7 @@ namespace VillaProject.Application.Features.Categories.Commands.DeleteCategoryCo
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Response> Handle(DeleteCategoryCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(DeleteCategoryCommandRequest request, CancellationToken cancellationToken)
         {
             var category = await _unitOfWork.Categories.GetFirstAsync(x => x.Id == request.Id, cancellationToken);
             if (category != null)
@@ -22,7 +22,7 @@ namespace VillaProject.Application.Features.Categories.Commands.DeleteCategoryCo
                 await _unitOfWork.SaveAsync(cancellationToken);
             }
 
-            return SuccessResponse.Success(200);
+            return SuccessResult.Success(200);
         }
     }
 }

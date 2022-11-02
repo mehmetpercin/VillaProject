@@ -4,7 +4,7 @@ using VillaProject.Application.Dtos.Roles;
 
 namespace VillaProject.Application.Features.Roles.Queries.GetRolesQuery
 {
-    public class GetRolesQueryRequest : IRequest<Response>
+    public class GetRolesQueryRequest : IRequest<Result>
     {
     }
 }

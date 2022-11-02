@@ -32,7 +32,7 @@ namespace VillaProject.UnitTests.ApplicationTests.Products.Commands
 
             var result = await _deleteProductCommandRequestHandler.Handle(new DeleteProductCommandRequest { Id = 1 }, CancellationToken.None);
 
-            Assert.IsType<ErrorResponse>(result);
+            Assert.IsType<ErrorResult>(result);
             Assert.Equal(400, result.StatusCode);
         }
 
@@ -47,7 +47,7 @@ namespace VillaProject.UnitTests.ApplicationTests.Products.Commands
             _mockUow.Verify(x => x.Products.RemoveAsync(It.IsAny<Product>(), CancellationToken.None), Times.Never);
             _mockUow.Verify(x => x.SaveAsync(CancellationToken.None), Times.Never);
 
-            Assert.IsType<SuccessResponse>(result);
+            Assert.IsType<SuccessResult>(result);
             Assert.Equal(200, result.StatusCode);
         }
 
@@ -63,7 +63,7 @@ namespace VillaProject.UnitTests.ApplicationTests.Products.Commands
             _mockUow.Verify(x => x.Products.RemoveAsync(It.IsAny<Product>(), CancellationToken.None), Times.Once);
             _mockUow.Verify(x => x.SaveAsync(CancellationToken.None), Times.Once);
 
-            Assert.IsType<SuccessResponse>(result);
+            Assert.IsType<SuccessResult>(result);
             Assert.Equal(200, result.StatusCode);
         }
     }

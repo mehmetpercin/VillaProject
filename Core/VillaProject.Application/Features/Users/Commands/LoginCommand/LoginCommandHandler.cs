@@ -5,7 +5,7 @@ using VillaProject.Application.Services;
 
 namespace VillaProject.Application.Features.Users.LoginCommand
 {
-    public class LoginCommandHandler : IRequestHandler<LoginCommandRequest, Response>
+    public class LoginCommandHandler : IRequestHandler<LoginCommandRequest, Result>
     {
         private readonly IAuthService _authService;
 
@@ -14,7 +14,7 @@ namespace VillaProject.Application.Features.Users.LoginCommand
             _authService = authService;
         }
 
-        public async Task<Response> Handle(LoginCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(LoginCommandRequest request, CancellationToken cancellationToken)
         {
             var result = await _authService.LoginAsync(new AuthDto
             {
@@ -22,7 +22,7 @@ namespace VillaProject.Application.Features.Users.LoginCommand
                 Password = request.Password
             }, cancellationToken);
 
-            return SuccessDataResponse.Success(result, 200);
+            return SuccessDataResult.Success(result, 200);
         }
     }
 }

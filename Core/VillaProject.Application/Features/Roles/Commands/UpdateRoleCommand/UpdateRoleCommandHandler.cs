@@ -5,7 +5,7 @@ using VillaProject.Application.Services;
 
 namespace VillaProject.Application.Features.Roles.Commands.UpdateRoleCommand
 {
-    public class UpdateRoleCommandHandler : IRequestHandler<UpdateRoleCommandRequest, Response>
+    public class UpdateRoleCommandHandler : IRequestHandler<UpdateRoleCommandRequest, Result>
     {
         private readonly IRoleService _roleService;
 
@@ -14,7 +14,7 @@ namespace VillaProject.Application.Features.Roles.Commands.UpdateRoleCommand
             _roleService = roleService;
         }
 
-        public async Task<Response> Handle(UpdateRoleCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(UpdateRoleCommandRequest request, CancellationToken cancellationToken)
         {
             await _roleService.UpdateUserRoleAsync(new RoleDto
             {
@@ -22,7 +22,7 @@ namespace VillaProject.Application.Features.Roles.Commands.UpdateRoleCommand
                 Name = request.RoleName
             });
 
-            return SuccessResponse.Success(200);
+            return SuccessResult.Success(200);
         }
     }
 }

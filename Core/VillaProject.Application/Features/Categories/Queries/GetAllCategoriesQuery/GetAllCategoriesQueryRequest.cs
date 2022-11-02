@@ -4,7 +4,7 @@ using VillaProject.Application.Dtos.Responses;
 
 namespace VillaProject.Application.Features.Categories.Queries.GetAllCategoriesQuery
 {
-    public class GetAllCategoriesQueryRequest : IRequest<Response>
+    public class GetAllCategoriesQueryRequest : IRequest<Result>
     {
     }
 }

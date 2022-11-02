@@ -5,7 +5,7 @@ using VillaProject.Application.Repositories;
 
 namespace VillaProject.Application.Features.Categories.Queries.GetAllCategoriesQuery
 {
-    public class GetAllCategoriesQueryRequestHandler : IRequestHandler<GetAllCategoriesQueryRequest, Response>
+    public class GetAllCategoriesQueryRequestHandler : IRequestHandler<GetAllCategoriesQueryRequest, Result>
     {
         private readonly ICategoryRepository _categoryRepository;
 
@@ -14,7 +14,7 @@ namespace VillaProject.Application.Features.Categories.Queries.GetAllCategoriesQ
             _categoryRepository = categoryRepository;
         }
 
-        public async Task<Response> Handle(GetAllCategoriesQueryRequest request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(GetAllCategoriesQueryRequest request, CancellationToken cancellationToken)
         {
             var categories = await Task.Run(() =>
             {
@@ -25,7 +25,7 @@ namespace VillaProject.Application.Features.Categories.Queries.GetAllCategoriesQ
                 }).ToList();
             });
 
-            return SuccessDataResponse.Success(categories, 200);
+            return SuccessDataResult.Success(categories, 200);
         }
     }
 }

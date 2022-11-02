@@ -4,7 +4,7 @@ using VillaProject.Application.Repositories;
 
 namespace VillaProject.Application.Features.Villas.Commands.UpdateVillaCommand
 {
-    public class UpdateVillaCommandRequestHandler : IRequestHandler<UpdateVillaCommandRequest, Response>
+    public class UpdateVillaCommandRequestHandler : IRequestHandler<UpdateVillaCommandRequest, Result>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -13,7 +13,7 @@ namespace VillaProject.Application.Features.Villas.Commands.UpdateVillaCommand
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Response> Handle(UpdateVillaCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(UpdateVillaCommandRequest request, CancellationToken cancellationToken)
         {
             var villa = await _unitOfWork.Villas.GetByIdAsync(request.Id, cancellationToken);
             if (villa != null)
@@ -22,7 +22,7 @@ namespace VillaProject.Application.Features.Villas.Commands.UpdateVillaCommand
                 await _unitOfWork.SaveAsync(cancellationToken);
             }
 
-            return SuccessResponse.Success(200);
+            return SuccessResult.Success(200);
         }
     }
 }

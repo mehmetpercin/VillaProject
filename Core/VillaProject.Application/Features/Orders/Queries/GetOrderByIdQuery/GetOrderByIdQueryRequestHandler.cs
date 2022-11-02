@@ -5,7 +5,7 @@ using VillaProject.Application.Repositories;
 
 namespace VillaProject.Application.Features.Orders.Queries.GetOrderByIdQuery
 {
-    public class GetOrderByIdQueryRequestHandler : IRequestHandler<GetOrderByIdQueryRequest,Response>
+    public class GetOrderByIdQueryRequestHandler : IRequestHandler<GetOrderByIdQueryRequest,Result>
     {
         private readonly IOrderRepository _orderRepository;
 
@@ -14,11 +14,11 @@ namespace VillaProject.Application.Features.Orders.Queries.GetOrderByIdQuery
             _orderRepository = orderRepository;
         }
 
-        public async Task<Response> Handle(GetOrderByIdQueryRequest request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(GetOrderByIdQueryRequest request, CancellationToken cancellationToken)
         {
             var order = await _orderRepository.GetOrderWithOrderItemsByIdAsync(request.Id, cancellationToken);
             if (order == null)
-                return SuccessDataResponse.Success(null, 200);
+                return SuccessDataResult.Success(null, 200);
 
             var response = new GetOrderByIdQueryResponse
             {
@@ -33,7 +33,7 @@ namespace VillaProject.Application.Features.Orders.Queries.GetOrderByIdQuery
                 TotalPrice = order.OrderItems.Sum(x => x.Price * x.Quantity)
             };
 
-            return SuccessDataResponse.Success(response, 200);
+            return SuccessDataResult.Success(response, 200);
         }
     }
 }

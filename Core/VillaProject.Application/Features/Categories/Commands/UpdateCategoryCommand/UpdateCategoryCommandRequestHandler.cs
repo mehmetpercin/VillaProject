@@ -4,7 +4,7 @@ using VillaProject.Application.Repositories;
 
 namespace VillaProject.Application.Features.Categories.Commands.UpdateCategoryCommand
 {
-    public class UpdateCategoryCommandRequestHandler : IRequestHandler<UpdateCategoryCommandRequest, Response>
+    public class UpdateCategoryCommandRequestHandler : IRequestHandler<UpdateCategoryCommandRequest, Result>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -12,11 +12,11 @@ namespace VillaProject.Application.Features.Categories.Commands.UpdateCategoryCo
         {
             _unitOfWork = unitOfWork;
         }
-        public async Task<Response> Handle(UpdateCategoryCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(UpdateCategoryCommandRequest request, CancellationToken cancellationToken)
         {
             var exists = await _unitOfWork.Categories.AnyAsync(x => x.Name == request.Name, cancellationToken);
             if (exists)
-                return ErrorResponse.Fail("Category with this name already exists!", 400);
+                return ErrorResult.Fail("Category with this name already exists!", 400);
 
             var category = await _unitOfWork.Categories.GetByIdAsync(request.Id, cancellationToken);
             if (category != null)
@@ -25,7 +25,7 @@ namespace VillaProject.Application.Features.Categories.Commands.UpdateCategoryCo
                 await _unitOfWork.SaveAsync(cancellationToken);
             }
 
-            return SuccessResponse.Success(200);
+            return SuccessResult.Success(200);
         }
     }
 }

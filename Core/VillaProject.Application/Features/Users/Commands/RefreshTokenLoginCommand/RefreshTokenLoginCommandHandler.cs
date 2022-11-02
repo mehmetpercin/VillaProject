@@ -5,7 +5,7 @@ using VillaProject.Application.Services;
 
 namespace VillaProject.Application.Features.Users.RefreshTokenLoginCommand
 {
-    public class RefreshTokenLoginCommandHandler : IRequestHandler<RefreshTokenLoginCommandRequest, Response>
+    public class RefreshTokenLoginCommandHandler : IRequestHandler<RefreshTokenLoginCommandRequest, Result>
     {
         private readonly IAuthService _authService;
 
@@ -14,10 +14,10 @@ namespace VillaProject.Application.Features.Users.RefreshTokenLoginCommand
             _authService = authService;
         }
 
-        public async Task<Response> Handle(RefreshTokenLoginCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(RefreshTokenLoginCommandRequest request, CancellationToken cancellationToken)
         {
             var result = await _authService.LoginWithRefreshTokenAsync(request.RefreshToken, cancellationToken);
-            return SuccessDataResponse.Success(result, 200);
+            return SuccessDataResult.Success(result, 200);
         }
     }
 }

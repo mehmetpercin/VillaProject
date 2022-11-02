@@ -9,7 +9,7 @@ namespace VillaProject.WebAPI.Controllers
     public class BaseController : ControllerBase
     {
         protected IMediator Mediator => HttpContext.RequestServices.GetRequiredService<IMediator>();
-        protected IActionResult CreateActionResultInstance(Response response)
+        protected IActionResult CreateActionResultInstance(Result response)
         {
             return new ObjectResult(response)
             {

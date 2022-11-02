@@ -3,7 +3,7 @@ using VillaProject.Application.Dtos.Responses;
 
 namespace VillaProject.Application.Features.Villas.Queries
 {
-    public class GetAllVillasQueryRequest : IRequest<Response>
+    public class GetAllVillasQueryRequest : IRequest<Result>
     {
     }
 }

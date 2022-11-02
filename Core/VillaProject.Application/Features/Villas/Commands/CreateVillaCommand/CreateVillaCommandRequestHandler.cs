@@ -5,7 +5,7 @@ using VillaProject.Domain.Entities;
 
 namespace VillaProject.Application.Features.Villas.Commands.CreateVillaCommand
 {
-    public class CreateVillaCommandRequestHandler : IRequestHandler<CreateVillaCommandRequest, Response>
+    public class CreateVillaCommandRequestHandler : IRequestHandler<CreateVillaCommandRequest, Result>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -14,7 +14,7 @@ namespace VillaProject.Application.Features.Villas.Commands.CreateVillaCommand
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Response> Handle(CreateVillaCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(CreateVillaCommandRequest request, CancellationToken cancellationToken)
         {
             var villa = new Villa
             {
@@ -23,7 +23,7 @@ namespace VillaProject.Application.Features.Villas.Commands.CreateVillaCommand
 
             await _unitOfWork.Villas.AddAsync(villa, cancellationToken);
             await _unitOfWork.SaveAsync(cancellationToken);
-            return SuccessDataResponse.Success(villa.Id, 200);
+            return SuccessDataResult.Success(villa.Id, 200);
         }
     }
 }
